@@ -1,6 +1,28 @@
+import Thoughts from '@/components/Thoughts'
+import { db } from '@/utils/Firebase'
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
+
+  // State for All Posts
+  const [allPosts, setAllPosts] = useState([])
+
+  const getPost = async () => {
+    const collectionRef = collection(db, "socialApp-Posts");
+    const q = query(collectionRef, orderBy("timestamp", "desc"));
+    const snap = onSnapshot(q, (snapshot) => {
+      setAllPosts(snapshot.docs.map((doc)=> ({ ...doc.data(), id: doc.id})))
+    })
+  }
+
+
+  useEffect(() => {
+    getPost();
+  }, [])
+
+
   return (
     <>
       <Head>
@@ -10,9 +32,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <div className='my-12 text-lg font-medium'>
+        <h2 className="" >Other People's Thoughts</h2>
+
+        {allPosts.map(post => (<Thoughts {...post} key={post.id} > </Thoughts>))}
+
+      </div>
       
-      <main>
-      </main>
     </>
   )
 }

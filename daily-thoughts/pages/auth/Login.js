@@ -1,4 +1,10 @@
+// React and NextJs Imports
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+
+// React and Firebase Hooks
+import {useAuthState} from "react-firebase-hooks/auth"
 
 // React Icons Inport
 import { FcGoogle } from "react-icons/fc"
@@ -8,18 +14,34 @@ import { HiOutlineMail } from "react-icons/Hi"
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "@/utils/Firebase";
 
+
+// <------------Main Funtion ----------------->
+
 function Login() {
+
+  const [user, loading] = useAuthState(auth);
+
+  // Defining Router 
+  const route = useRouter();
 
   // Google SignIn
   const googleProvider = new GoogleAuthProvider();
-
   const GoogleLogin = async () =>{
     try{
-
       const result = await signInWithPopup(auth, googleProvider)
+      route.push("/")
     }catch(error){console.log(error);}
   } 
 
+  useEffect(() =>{
+    if(user)
+    {
+      route.push("/")
+    }
+    else{
+      console.log("Loading");
+    }
+  }, [route, user]);  
 
 
   return (
@@ -44,6 +66,7 @@ function Login() {
     </div>
   )
 };
+
 
 
 export default Login;
