@@ -38,12 +38,6 @@ function Login() {
           <FcGoogle className=" ml-3 text-2xl  " />  Sign in with Google
         </button>
         
-        {/* Experimental Feature */}
-
-        <Link href={"email/EmailSignIn"} className="text-white bg-gray-700 w-full mt-5 py-3 font-medium rounded-lg flex align-middle gap-3">
-
-          <HiOutlineMail className=" ml-3 text-2xl " />Sign in with email
-        </Link>
 
       </div>
 
