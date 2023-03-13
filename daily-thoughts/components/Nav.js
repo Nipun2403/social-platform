@@ -32,13 +32,13 @@ export default function Nav() {
           </Link>
 
           :  //Else Render Below Code
-          
+
           <div className="flex items-center gap-6">
             <Link href={"/Posts"}>
               <button className=" font-medium bg-cyan-500 text-white py-2 px-4 rounded-lg"  >New Post </button>
             </Link>
             <Link href={"/dashboard"}>
-              <img className="w-12 rounded-full cursor-pointer" src={user.photoURL} alt="Profile Picture"/>
+              <img className="w-12 rounded-full cursor-pointer" src={user.photoURL} alt="Profile Picture" />
             </Link>
           </div>
         }

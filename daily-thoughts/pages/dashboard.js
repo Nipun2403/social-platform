@@ -91,7 +91,7 @@ function DashBoard() {
               <button className="flex items-center justify-center bg-teal-600 rounded-full text-white font-medium text-sm gap-2 py-1 px-4 mx-2"> <AiFillEdit /> Edit</button>
               </Link>
 
-            </div>
+              </div>
 
 
           </Thoughts>

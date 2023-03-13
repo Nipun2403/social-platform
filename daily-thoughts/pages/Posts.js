@@ -36,6 +36,7 @@ function NewPost() {
       const docRef = doc(db, "socialApp-Posts", post.id)
       const editData = { ...post, timestamp: serverTimestamp() }
       await updateDoc(docRef, editData)
+      toast.success("Post Updated🚀")
       route.push("/dashboard")
     }
     // Else Create New Post
@@ -77,6 +78,7 @@ function NewPost() {
     if (routeData.id) {
       setPost({ description: routeData.description, id: routeData.id })
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, route, user]);
 
 

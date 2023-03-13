@@ -2,6 +2,7 @@ import Thoughts from '@/components/Thoughts'
 import { db } from '@/utils/Firebase'
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
@@ -35,7 +36,14 @@ export default function Home() {
       <div className='my-12 text-lg font-medium'>
         <h2 className="" >Other People's Thoughts</h2>
 
-        {allPosts.map(post => (<Thoughts {...post} key={post.id} > </Thoughts>))}
+        {allPosts.map(post => (<Thoughts {...post} key={post.id} > 
+        
+        <Link href={{pathname: `/${post.id}`, query:{...post}}}>
+          <button>
+            {post.commentContent?.length} comments
+          </button>
+        </Link>
+        </Thoughts>))}
 
       </div>
       
